@@ -10,6 +10,7 @@ import complaintsRouter from './routes/complaintsRoute';
 import favoritesRouter from './routes/favoritesRoute';
 import ordersRouter from './routes/ordersRoute';
 import productsRouter from './routes/productsRoute';
+import orderContentsRouter from './routes/orderContentsRoute';
 
 const port = 5000;
 
@@ -26,6 +27,7 @@ app.use('/complaints', complaintsRouter);
 app.use('/favorites', favoritesRouter);
 app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
+app.use('/orderContents', orderContentsRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
