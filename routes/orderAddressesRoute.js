@@ -3,7 +3,7 @@ import { createOrderAddress, getOrderAddressForOrderId } from '../controllers/or
 
 const orderAddressesRouter = express.Router();
 
-orderContentsRouter.post('/create', createOrderAddress);
-orderContentsRouter.get('/get', getOrderAddressForOrderId);
+orderAddressesRouter.post('/create', createOrderAddress);
+orderAddressesRouter.get('/get', getOrderAddressForOrderId);
 
 export default orderAddressesRouter;
