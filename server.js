@@ -11,6 +11,7 @@ import favoritesRouter from './routes/favoritesRoute.js';
 import ordersRouter from './routes/ordersRoute.js';
 import productsRouter from './routes/productsRoute.js';
 import orderContentsRouter from './routes/orderContentsRoute.js';
+import orderAddressesRouter from './routes/orderAddressesRoute.js';
 
 const port = 5000;
 
@@ -28,6 +29,7 @@ app.use('/favorites', favoritesRouter);
 app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
 app.use('/orderContents', orderContentsRouter);
+app.use('/orderAddresses', orderAddressesRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
