@@ -1,8 +1,10 @@
 import express from 'express';
-import { createFavorite, getAllFavoritesForCustomerId, removeFavorite } from '../controllers/favoritesController';
+import { createFavorite, getAllFavoritesForCustomerId, removeFavorite } from '../controllers/favoritesController.js';
 
-export const favoritesRouter = express.Router();
+const favoritesRouter = express.Router();
 
 favoritesRouter.post('/create', createFavorite);
 favoritesRouter.get('/getAll', getAllFavoritesForCustomerId);
 favoritesRouter.delete('/delete', removeFavorite);
+
+export default favoritesRouter;

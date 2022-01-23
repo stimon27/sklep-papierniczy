@@ -1,4 +1,4 @@
-import dbConnection from '../db';
+import dbConnection from '../db.js';
 
 export const createBasketRecord = async (req, res) => {
     dbConnection('Pozycje_w_koszykach')

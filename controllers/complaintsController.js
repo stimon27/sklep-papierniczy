@@ -1,3 +1,5 @@
+import dbConnection from '../db.js';
+
 export const createComplaint = async (req, res) => {
     dbConnection('Reklamacje')
         .insert({

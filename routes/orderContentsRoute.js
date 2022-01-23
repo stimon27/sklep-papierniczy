@@ -1,7 +1,9 @@
 import express from 'express';
-import { createOrderContents, getAllOrderContentsForOrderId } from '../controllers/orderContentsController';
+import { createOrderContents, getAllOrderContentsForOrderId } from '../controllers/orderContentsController.js';
 
-export const orderContentsRouter = express.Router();
+const orderContentsRouter = express.Router();
 
 orderContentsRouter.post('/create', createOrderContents);
 orderContentsRouter.get('/getAll', getAllOrderContentsForOrderId);
+
+export default orderContentsRouter;

@@ -1,4 +1,4 @@
-import dbConnection from '../db';
+import dbConnection from '../db.js';
 
 export const createFavorite = async (req, res) => {
     dbConnection('Pozycje_w_ulubionych')

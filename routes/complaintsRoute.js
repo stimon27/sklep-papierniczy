@@ -1,6 +1,8 @@
 import express from 'express';
-import { createComplaint } from '../controllers/complaintsController'
+import { createComplaint } from '../controllers/complaintsController.js'
 
-export const complaintsRouter = express.Router();
+const complaintsRouter = express.Router();
 
 complaintsRouter.post('/create', createComplaint);
+
+export default complaintsRouter;

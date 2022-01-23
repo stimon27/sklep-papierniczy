@@ -1,4 +1,4 @@
-import dbConnection from '../db';
+import dbConnection from '../db.js';
 
 export const createOrderContents = async (req, res) => {
     dbConnection('Zawartosc_zamowien')

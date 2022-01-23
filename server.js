@@ -5,12 +5,12 @@ import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import basketRecordsRouter from './routes/basketRecordsRoute';
-import complaintsRouter from './routes/complaintsRoute';
-import favoritesRouter from './routes/favoritesRoute';
-import ordersRouter from './routes/ordersRoute';
-import productsRouter from './routes/productsRoute';
-import orderContentsRouter from './routes/orderContentsRoute';
+import basketRecordsRouter from './routes/basketRecordsRoute.js';
+import complaintsRouter from './routes/complaintsRoute.js';
+import favoritesRouter from './routes/favoritesRoute.js';
+import ordersRouter from './routes/ordersRoute.js';
+import productsRouter from './routes/productsRoute.js';
+import orderContentsRouter from './routes/orderContentsRoute.js';
 
 const port = 5000;
 
