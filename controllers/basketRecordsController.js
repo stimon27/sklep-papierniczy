@@ -15,6 +15,21 @@ export const createBasketRecord = async (req, res) => {
         })
 }
 
+export const getBasketRecordForParams = async (req, res) => {
+    dbConnection('Pozycje_w_koszykach')
+        .where({
+            id_klienta: Number(req.query.id_klienta),
+            id_produktu: Number(req.query.id_produktu)
+        })
+        .select('*')
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.json({ message: err.message });
+        })
+}
+
 export const getAllBasketRecordsForCustomerId = async (req, res) => {
     dbConnection
         .select('*')
@@ -30,8 +45,7 @@ export const getAllBasketRecordsForCustomerId = async (req, res) => {
 
 export const updateBasketRecord = async (req, res) => {
     dbConnection('Pozycje_w_koszykach')
-        .where({ 'id_klienta': req.body.id_klienta })
-        .andWhere({ 'id_produktu': req.body.id_produktu })
+        .where({ 'id_klienta': Number(req.body.id_klienta), 'id_produktu': Number(req.body.id_produktu) })
         .update({
             'liczba_produktu': req.body.liczba_produktu
         })

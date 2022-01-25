@@ -1,6 +1,8 @@
 import react from 'react';
 import './PlaceOrder.css';
 
-export default PlaceOrder = (props) => {
+const PlaceOrder = (props) => {
     
 }
+
+export default PlaceOrder;

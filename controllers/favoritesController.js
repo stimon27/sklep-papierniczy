@@ -27,6 +27,21 @@ export const getAllFavoritesForCustomerId = async (req, res) => {
         })
 }
 
+export const getFavoriteForParams = async (req, res) => {
+    dbConnection('Pozycje_w_ulubionych')
+        .where({
+            id_klienta: Number(req.query.id_klienta),
+            id_produktu: Number(req.query.id_produktu)
+        })
+        .select('*')
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.json({ message: err.message });
+        })
+}
+
 export const removeFavorite = async (req, res) => {
     dbConnection('Pozycje_w_ulubionych')
         .where({ 'id_klienta': req.body.id_klienta })

@@ -7,6 +7,8 @@ import PlaceOrder from './PlaceOrder.js';
 import BrowseOrderHistory from './BrowseOrderHistory.js';
 import PlaceComplaint from './PlaceComplaint.js';
 
+const CUSTOMER_ID = 10;
+
 function App() {
   return (
     <Router>
@@ -16,19 +18,19 @@ function App() {
             <Menu />
           </Route>
           <Route exact path="/browseCatalog">
-            <BrowseCatalog />
+            <BrowseCatalog customerId={CUSTOMER_ID}/>
           </Route>
           <Route exact path="/browseBasket">
-            <BrowseBasket />
+            <BrowseBasket customerId={CUSTOMER_ID}/>
           </Route>
           <Route exact path="/placeOrder">
-            <PlaceOrder />
+            <PlaceOrder customerId={CUSTOMER_ID}/>
           </Route>
           <Route exact path='/browseOrderHistory'>
-            <BrowseOrderHistory />
+            <BrowseOrderHistory customerId={CUSTOMER_ID}/>
           </Route>
           <Route exact path='/placeComplaint'>
-            <PlaceComplaint />
+            <PlaceComplaint customerId={CUSTOMER_ID}/>
           </Route>
         </Switch>
       </div>

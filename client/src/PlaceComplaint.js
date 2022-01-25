@@ -1,6 +1,8 @@
 import react from 'react';
 import './PlaceComplaint.css';
 
-export default PlaceComplaint = (props) => {
+const PlaceComplaint = (props) => {
     
 }
+
+export default PlaceComplaint;

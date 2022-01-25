@@ -1,6 +1,8 @@
 import react from 'react';
 import './BrowseBasket.css'
 
-export default BrowseBasket = (props) => {
+const BrowseBasket = (props) => {
     
 }
+
+export default BrowseBasket;
