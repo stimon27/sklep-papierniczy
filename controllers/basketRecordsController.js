@@ -34,7 +34,7 @@ export const getAllBasketRecordsForCustomerId = async (req, res) => {
     dbConnection
         .select('*')
         .from('Pozycje_w_koszykach')
-        .where({ 'id_klienta': Number(req.body.id_klienta) })
+        .where({ 'id_klienta': Number(req.query.id_klienta) })
         .then((data) => {
             res.json(data);
         })
@@ -47,10 +47,10 @@ export const updateBasketRecord = async (req, res) => {
     dbConnection('Pozycje_w_koszykach')
         .where({ 'id_klienta': Number(req.body.id_klienta), 'id_produktu': Number(req.body.id_produktu) })
         .update({
-            'liczba_produktu': req.body.liczba_produktu
+            'liczba_produktu': Number(req.body.liczba_produktu)
         })
         .then(() => {
-            res.json({ message: 'Basket record updated successfully' })
+            res.json({ message: 'Basket record updated successfully' });
         })
         .catch((err) => {
             res.json({ message: err.message});

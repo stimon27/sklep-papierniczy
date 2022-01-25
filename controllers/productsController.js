@@ -32,10 +32,10 @@ export const getAllProducts = async (req, res) => {
 }
 
 export const getProductById = async (req, res) => {
-    dbConnection
+    dbConnection('Produkty')
         .select('*')
         .from('Produkty')
-        .where({ id_produktu: req.body.id_produktu })
+        .where({ id_produktu: Number(req.query.id_produktu) })
         .then((data) => {
             res.json(data);
         })
