@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Menu from './Menu.js';
-import BrowseCatalog from './BrowseCatalog.js';
-import BrowseBasket from './BrowseBasket.js';
-import PlaceOrder from './PlaceOrder.js';
-import BrowseOrderHistory from './BrowseOrderHistory.js';
-import PlaceComplaint from './PlaceComplaint.js';
+import Menu from '../menu/Menu.js';
+import BrowseCatalog from '../browseCatalog/BrowseCatalog.js';
+import BrowseBasket from '../browseBasket/BrowseBasket.js';
+import PlaceOrder from '../placeOrder/PlaceOrder.js';
+import BrowseOrderHistory from '../browseOrderHistory/BrowseOrderHistory.js';
+import PlaceComplaint from '../placeComplaint/PlaceComplaint.js';
 
 const CUSTOMER_ID = 10;
 
