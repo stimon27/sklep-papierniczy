@@ -15,11 +15,26 @@ export const createBasketRecord = async (req, res) => {
         })
 }
 
+export const getBasketRecordForParams = async (req, res) => {
+    dbConnection('Pozycje_w_koszykach')
+        .where({
+            id_klienta: Number(req.query.id_klienta),
+            id_produktu: Number(req.query.id_produktu)
+        })
+        .select('*')
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.json({ message: err.message });
+        })
+}
+
 export const getAllBasketRecordsForCustomerId = async (req, res) => {
     dbConnection
         .select('*')
         .from('Pozycje_w_koszykach')
-        .where({ 'id_klienta': Number(req.body.id_klienta) })
+        .where({ 'id_klienta': Number(req.query.id_klienta) })
         .then((data) => {
             res.json(data);
         })
@@ -30,13 +45,12 @@ export const getAllBasketRecordsForCustomerId = async (req, res) => {
 
 export const updateBasketRecord = async (req, res) => {
     dbConnection('Pozycje_w_koszykach')
-        .where({ 'id_klienta': req.body.id_klienta })
-        .andWhere({ 'id_produktu': req.body.id_produktu })
+        .where({ 'id_klienta': Number(req.body.id_klienta), 'id_produktu': Number(req.body.id_produktu) })
         .update({
-            'liczba_produktu': req.body.liczba_produktu
+            'liczba_produktu': Number(req.body.liczba_produktu)
         })
         .then(() => {
-            res.json({ message: 'Basket record updated successfully' })
+            res.json({ message: 'Basket record updated successfully' });
         })
         .catch((err) => {
             res.json({ message: err.message});
@@ -44,9 +58,9 @@ export const updateBasketRecord = async (req, res) => {
 }
 
 export const removeBasketRecord = async (req, res) => {
+    console.log(req);
     dbConnection('Pozycje_w_koszykach')
-        .where({ 'id_klienta': req.body.id_klienta })
-        .andWhere({ 'id_produktu': req.body.id_produktu })
+        .where({ 'id_klienta': Number(req.body.id_klienta), 'id_produktu': Number(req.body.id_produktu) })
         .del()
         .then(() => {
             res.json({ message: 'Basket record removed successfully' });

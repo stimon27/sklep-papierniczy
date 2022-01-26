@@ -30,3 +30,16 @@ export const getAllProducts = async (req, res) => {
             res.json({ message: err.message });
         })
 }
+
+export const getProductById = async (req, res) => {
+    dbConnection('Produkty')
+        .select('*')
+        .from('Produkty')
+        .where({ id_produktu: Number(req.query.id_produktu) })
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.json({ message: err.message });
+        })
+}
