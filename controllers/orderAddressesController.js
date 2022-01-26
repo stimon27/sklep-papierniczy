@@ -18,10 +18,9 @@ export const createOrderAddress = async (req, res) => {
 }
 
 export const getOrderAddressForOrderId = async (req, res) => {
-    dbConnection
+    dbConnection('Adresy_zamowien')
+        .where({ 'id_zamowienia': Number(req.query.id_zamowienia) })
         .select('*')
-        .from('Adresy_zamowien')
-        .where({ 'id_zamowienia': Number(req.body.id_zamowienia) })
         .then((data) => {
             res.json(data);
         })
