@@ -22,10 +22,9 @@ export const createOrder = async (req, res) => {
 }
 
 export const getAllOrdersForCustomerId = async (req, res) => {
-    dbConnection
+    dbConnection('Zamowienia')
+        .where({ 'id_klienta': Number(req.query.id_klienta) })
         .select('*')
-        .from('Zamowienia')
-        .where({ 'id_klienta': Number(req.body.id_klienta) })
         .then((data) => {
             res.json(data);
         })
@@ -35,10 +34,9 @@ export const getAllOrdersForCustomerId = async (req, res) => {
 }
 
 export const getOrderById = async (req, res) => {
-    dbConnection
+    dbConnection('Zamowienia')
+        .where({ 'id_zamowienia': Number(req.query.id_zamowienia)})
         .select('*')
-        .from('Zamowienia')
-        .where({ 'id_zamowienia': Number(req.body.id_zamowienia)})
         .then((data) => {
             res.json(data);
         })

@@ -16,10 +16,9 @@ export const createOrderContents = async (req, res) => {
 }
 
 export const getAllOrderContentsForOrderId = async (req, res) => {
-    dbConnection
+    dbConnection('Zawartosc_zamowien')
+        .where({ 'id_zamowienia': Number(req.query.id_zamowienia) })
         .select('*')
-        .from('Zawartosc_zamowien')
-        .where({ 'id_zamowienia': Number(req.body.id_zamowienia) })
         .then((data) => {
             res.json(data);
         })
