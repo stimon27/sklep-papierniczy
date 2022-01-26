@@ -58,9 +58,9 @@ export const updateBasketRecord = async (req, res) => {
 }
 
 export const removeBasketRecord = async (req, res) => {
+    console.log(req);
     dbConnection('Pozycje_w_koszykach')
-        .where({ 'id_klienta': req.body.id_klienta })
-        .andWhere({ 'id_produktu': req.body.id_produktu })
+        .where({ 'id_klienta': Number(req.body.id_klienta), 'id_produktu': Number(req.body.id_produktu) })
         .del()
         .then(() => {
             res.json({ message: 'Basket record removed successfully' });

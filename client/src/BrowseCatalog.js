@@ -12,6 +12,10 @@ const BrowseCatalog = (props) => {
     const [status, setStatus] = useState('Witamy w katalogu!');
     const [searchQuery, setSearchQuery] = useState('');
 
+    const sleep = (ms) => {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
     const fetchProducts = async () => {
         axios.get('http://localhost:5000/products/getAll')
             .then((response) => {
@@ -52,6 +56,17 @@ const BrowseCatalog = (props) => {
         setIsModalActive(false);
     }, [currentProductId])
 
+    useEffect(() => {
+        if(!isLoading) {
+            if(isModalActive) {
+                document.querySelector('.modalArea').classList.add('modalActive');
+            }
+            else {
+                document.querySelector('.modalArea').classList.remove('modalActive');
+            }
+        }
+    }, [isModalActive])
+
     const handleProductChoice = (event) => {
         if(currentProductId !== Number(event.target.parentNode.getAttribute('id'))) {
             setCurrentProductId(Number(event.target.parentNode.getAttribute('id')));
@@ -79,7 +94,7 @@ const BrowseCatalog = (props) => {
                 .then((response) => {
                     return response.data.length > 0;
                 })
-                .then((ifRecordExists) => {
+                .then(async (ifRecordExists) => {
                     if(ifRecordExists) {
                         axios
                             .put('http://localhost:5000/basketRecords/update', { id_produktu: currentProductId, id_klienta: props.customerId, liczba_produktu: quantity})
@@ -101,6 +116,10 @@ const BrowseCatalog = (props) => {
                                 console.error(error);
                             })
                     }
+                
+                    document.querySelector('.modalArea').classList.remove('modalActive');
+                    await sleep(1000);
+                    setIsModalActive(false);
                 })
                 .catch((error) => {
                     setStatus('Błąd...');
@@ -195,6 +214,7 @@ const BrowseCatalog = (props) => {
                                 <input type='number' id='productQuantityInput' value={value} onChange={(event) => {setValue(event.target.value)}}></input>
                             </div>
                             <button onClick={handleAddToBasket}>Dodaj do koszyka</button>
+                            <button onClick={() => {setIsModalActive(false)}} id='closeModalButton'>X</button>
                         </div>
                     }
                 </div>
