@@ -15,6 +15,7 @@
     justify-items: center;
     gap: 25px;
     background-color: var(--color-primary);
+    overflow-x: hidden;
 }
 
 .catalogBrowser {
