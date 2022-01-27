@@ -1,0 +1,23 @@
+#proofOfPurchaseContainer {
+    grid-area: proofOfPurchase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#proofOfPurchaseContainer > * {
+    margin-left: 40px;
+}
+
+#invoiceBoxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#invoiceBoxHeader {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}

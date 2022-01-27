@@ -1,0 +1,10 @@
+#paymentMethodsContainer {
+    grid-area: paymentMethods;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#paymentMethodsContainer > * {
+    margin-left: 20px;
+}

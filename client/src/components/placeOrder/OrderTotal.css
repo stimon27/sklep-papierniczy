@@ -1,0 +1,10 @@
+#orderTotalContainer {
+    grid-area: orderTotal;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#orderTotalContainer h1 {
+    padding-right: 40px;
+}

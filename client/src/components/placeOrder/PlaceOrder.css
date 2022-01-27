@@ -1,0 +1,26 @@
+:root {
+    --color-primary: #337def;
+    --color-secondary: #fcc729;
+}
+
+#placeOrderContainer {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "orderContentsList paymentMethods"
+    "orderContentsList deliveryOptions"
+    "orderContentsList proofOfPurchase"
+    "orderTotal buttonsContainer";
+    padding: 50px;
+    justify-items: center;
+    gap: 25px;
+    background-color: var(--color-primary);
+}
+
+#placeOrderContainer > * {
+    width: 100%;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+}
