@@ -1,0 +1,15 @@
+.selectComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selectComponent label, .selectComponent select {
+    font-size: 20px;
+}
+
+.selectComponent label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

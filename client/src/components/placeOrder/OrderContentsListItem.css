@@ -1,0 +1,21 @@
+.listItem {
+    padding: 10px;
+}
+
+.listItem h2 {
+    text-decoration: underline;
+}
+
+.listItem h2, .listItem h1, .listItem p {
+    margin: 10px 0px;
+}
+
+.listItem p span {
+    font-weight: bold;
+}
+
+hr {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+}
