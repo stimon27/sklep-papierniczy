@@ -1,6 +1,8 @@
 import ButtonsContainer from './ButtonsContainer.js';
 import Button from './Button.js';
 
+import { Link } from 'react-router-dom';
+
 import './OrderHistoryListItem.css'
 
 const OrderHistoryListItem = (props) => {
@@ -33,7 +35,7 @@ const OrderHistoryListItem = (props) => {
                 <h5 className='orderStatus'>Status zamówienia: {props.order.status_zamowienia}</h5>
             </div>
             <ButtonsContainer>
-                <Button text='Złóż reklamację' id='complaintButton'/>
+                <Link to={`/placeComplaint/${props.order.id_zamowienia}`}><Button text='Złóż reklamację' id='complaintButton'/></Link>
             </ButtonsContainer>
         </div>
     )

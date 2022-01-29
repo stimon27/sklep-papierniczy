@@ -10,9 +10,7 @@ import DeliveryOptions from './DeliveryOptions.js';
 import ProofOfPurchase from './ProofOfPurchase.js';
 import ButtonsContainer from './ButtonsContainer.js';
 import Button from './Button.js'
-import InputComponent from './InputComponent.js';
 import OrderContentsListItem from './OrderContentsListItem.js'
-import SelectComponent from './SelectComponent.js';
 
 const PlaceOrder = (props) => {
     const PAYMENT_METHODS = {
