@@ -84,7 +84,7 @@ const BrowseCatalog = (props) => {
                 quantityLimit = products[i].stan_magazynowy;
             }
         }
-        if(quantity < 1) {
+        if(quantity < 1 || quantity % 1 != 0) {
             setStatus('Podano błędną ilość produktu do dodania');
         } else if(quantity > quantityLimit) {
             setStatus('Niewystarczająca ilość produktu w magazynie');
