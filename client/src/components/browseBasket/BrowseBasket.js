@@ -135,10 +135,10 @@ const BrowseBasket = (props) => {
         let quantityLimit;
         for(let i = 0; i < basketRecords.length; i++) {
             if(Number(basketRecords[i].id_produktu) === currentRecordProductId) {
-                quantityLimit = basketRecords[i].stan_magazynowy;
+                quantityLimit = currentRecordsDetails[i].stan_magazynowy;
             }
         }
-        if(quantity < 1) {
+        if(quantity < 1 || quantity % 1 != 0) {
             setStatus('Podano błędną ilość produktu');
         } else if(quantity > quantityLimit) {
             setStatus('Niewystarczająca ilość produktu w magazynie');
@@ -199,17 +199,6 @@ const BrowseBasket = (props) => {
         setTotal(total);
     }
 
-    console.log('--')
-    console.log('isLoading: ' + isLoading);
-    console.log('isEmpty: ' + isEmpty);
-    console.log('basketRecords: ' + basketRecords);
-    console.log('basketRecordsAlreadyFetched: ' + basketRecordsAlreadyFetched);
-    console.log('currentRecordsDetails: ' + currentRecordsDetails);
-    console.log('currentRecordProductId: ' + currentRecordProductId);
-    console.log('isModalActive: ' + isModalActive);
-    console.log('value: ' + value);
-    console.log('--')
-
     if(isLoading) {
         return (
             <div id='loadingContainer'>
@@ -233,6 +222,7 @@ const BrowseBasket = (props) => {
         return (
             <div id='browseBasketContainer'>
                 <div className='basketBrowser'>
+                <h2>Twój koszyk</h2>
                 {basketRecords.length > 0 ? 
                     <table>
                         <thead>

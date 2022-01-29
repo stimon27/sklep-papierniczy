@@ -1,0 +1,48 @@
+:root {
+    --color-primary: #337def;
+    --color-secondary: #fcc729;
+}
+
+#browseOrderHistoryContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 50px;
+    gap: 25px;
+    background-color: var(--color-primary);
+}
+
+#browseOrderHistoryContainer > * {
+    width: 100%;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+#loadingContainer, #emptyContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+}
+
+#emptyContainer {
+    flex-direction: column;
+}
+
+#loadingContainer > h3, #emptyContainer > h3 {
+    font-size: 32px;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+#browseOrderHistoryHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

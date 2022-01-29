@@ -84,7 +84,7 @@ const BrowseCatalog = (props) => {
                 quantityLimit = products[i].stan_magazynowy;
             }
         }
-        if(quantity < 1) {
+        if(quantity < 1 || quantity % 1 != 0) {
             setStatus('Podano błędną ilość produktu do dodania');
         } else if(quantity > quantityLimit) {
             setStatus('Niewystarczająca ilość produktu w magazynie');
@@ -166,6 +166,7 @@ const BrowseCatalog = (props) => {
         return (
             <div id='browseCatalogContainer'>
                 <div className='catalogBrowser'>
+                    <h2>Katalog produktów</h2>
                     <div className='searchWrapper'>
                         <label htmlFor='searchInput'>
                             Wprowadź kryterium wyszukiwania:

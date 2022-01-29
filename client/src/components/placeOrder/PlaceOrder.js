@@ -39,7 +39,7 @@ const PlaceOrder = (props) => {
     const [ currentRecordsDetails, setCurrentRecordsDetails ] = useState([]);
     const [ total, setTotal ] = useState(0);
     const [ chosenPaymentMethod, setChosenPaymentMethod ] = useState(PAYMENT_METHODS.WITH_CARD);
-    const [ chosenDeliveryOption, setChosenDeliveryOption ] = useState(PAYMENT_METHODS.TRANSFER);
+    const [ chosenDeliveryOption, setChosenDeliveryOption ] = useState(DELIVERY_OPTIONS.BY_POST);
     const [ deliveryAddress, setDeliveryAddress ] = useState({
         ulica: '',
         numer: '',
@@ -48,6 +48,7 @@ const PlaceOrder = (props) => {
     })
     const [ chosenProofOfPurchase, setChosenProofOfPurchase ] = useState(PROOFS_OF_PURCHASE.RECEIPT);
     const [ nipNumber, setNipNumber ] = useState('');
+    const [ orderComplete, setOrderComplete ] = useState(false);
 
     const fetchBasketRecords = async () => {
         axios
@@ -110,8 +111,107 @@ const PlaceOrder = (props) => {
         }
     }, [currentRecordsDetails])
 
-    const handlePlaceOrder = (event) => {
+    const addDays = (date, days) => {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+      }
 
+    const handlePlaceOrder = async (event) => {        
+        const order_id = Math.floor(Math.random() * 1000);
+        
+        let order_date = new Date();
+        let delivery_date = addDays(order_date, 3);
+
+        order_date = order_date.toISOString();
+        delivery_date = delivery_date.toISOString();
+
+        const promises = []
+        promises.push(new Promise((resolve, reject) => {
+                axios
+                    .post('http://localhost:5000/orders/create', 
+                    {
+                        id_zamowienia: order_id, 
+                        id_klienta: props.customerId,
+                        status_zamowienia: "Oczekujące na płatność",
+                        data_zamowienia: order_date,
+                        data_dostawy: delivery_date,
+                        sposob_dostawy: chosenDeliveryOption,
+                        koszt_zamowienia: total,
+                        sposob_platnosci: chosenPaymentMethod,
+                        faktura: chosenProofOfPurchase === PROOFS_OF_PURCHASE.INVOICE ? 1 : 0
+                    })
+                    .then((response) => {
+                        resolve(response)
+                    })
+                    .catch((err) => {
+                        reject(err)
+                    })
+            }))
+
+        if(chosenDeliveryOption !== DELIVERY_OPTIONS.SELF_PICKUP) {
+            promises.push(new Promise((resolve, reject) => {
+                    axios
+                        .post('http://localhost:5000/orderAddresses/create', 
+                        {
+                            id_zamowienia: order_id,
+                            ulica: deliveryAddress.ulica,
+                            numer: deliveryAddress.numer,
+                            miasto: deliveryAddress.miasto,
+                            zip: deliveryAddress.zip
+                        })
+                        .then((response) => {
+                            resolve(response);
+                        })
+                        .catch((err) => {
+                            reject(err);
+                        })
+                })
+            )
+        }
+
+        basketRecords.forEach((basketRecord) => {
+            promises.push(new Promise((resolve, reject) => {
+                axios
+                    .post('http://localhost:5000/orderContents/create', { 
+                        id_zamowienia: order_id,
+                        id_produktu: basketRecord.id_produktu,
+                        liczba_produktu: basketRecord.liczba_produktu
+                    })
+                    .then((response) => {
+                        resolve(response)
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    })
+            }))
+
+            promises.push(new Promise((resolve, reject) => {
+                axios
+                .delete('http://localhost:5000/basketRecords/delete', 
+                {   data: 
+                        {   
+                            id_klienta: Number(props.customerId), 
+                            id_produktu: basketRecord.id_produktu 
+                        } 
+                })
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((err) => {
+                    reject(err);
+                })
+            }))
+        })
+
+        Promise.all(promises)
+            .then((res) => {
+                console.log('Zamowienie zlozone');
+                setOrderComplete(true);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
     }
 
     if(isLoading) {
@@ -120,16 +220,22 @@ const PlaceOrder = (props) => {
                 <h3>Ładowanie zamówienia...</h3>
             </div>
         )
+    } else if(orderComplete) {
+        return (
+            <div id='orderCompleteContainer'>
+                <h3>Twoje zamówienie zostało złożone</h3>
+                <Link to='/'><Button text='Powrót do menu' buttonId='exitButton'/></Link>
+            </div>
+        )
     } else {
         return (
             <div id='placeOrderContainer'>
                 <OrderContentsList>
                     {basketRecords.map((basketRecord, index) => (
                         <OrderContentsListItem 
-                        key={basketRecord.id_produktu}
-                        number={index}
-                        basketRecord={basketRecord}
-                        recordDetails={currentRecordsDetails[index]}
+                            key={basketRecord.id_produktu}
+                            basketRecord={basketRecord}
+                            recordDetails={currentRecordsDetails[index]}
                         />
                     ))}
                 </OrderContentsList>
