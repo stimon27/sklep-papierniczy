@@ -166,6 +166,7 @@ const BrowseCatalog = (props) => {
         return (
             <div id='browseCatalogContainer'>
                 <div className='catalogBrowser'>
+                    <h2>Katalog produktów</h2>
                     <div className='searchWrapper'>
                         <label htmlFor='searchInput'>
                             Wprowadź kryterium wyszukiwania:

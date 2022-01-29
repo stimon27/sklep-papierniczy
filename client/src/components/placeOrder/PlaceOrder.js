@@ -210,7 +210,7 @@ const PlaceOrder = (props) => {
                 setOrderComplete(true);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             })
     }
 
@@ -233,10 +233,9 @@ const PlaceOrder = (props) => {
                 <OrderContentsList>
                     {basketRecords.map((basketRecord, index) => (
                         <OrderContentsListItem 
-                        key={basketRecord.id_produktu}
-                        number={index}
-                        basketRecord={basketRecord}
-                        recordDetails={currentRecordsDetails[index]}
+                            key={basketRecord.id_produktu}
+                            basketRecord={basketRecord}
+                            recordDetails={currentRecordsDetails[index]}
                         />
                     ))}
                 </OrderContentsList>

@@ -222,6 +222,7 @@ const BrowseBasket = (props) => {
         return (
             <div id='browseBasketContainer'>
                 <div className='basketBrowser'>
+                <h2>Twój koszyk</h2>
                 {basketRecords.length > 0 ? 
                     <table>
                         <thead>
