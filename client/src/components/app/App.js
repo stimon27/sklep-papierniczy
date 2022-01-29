@@ -29,7 +29,7 @@ function App() {
           <Route exact path='/browseOrderHistory'>
             <BrowseOrderHistory customerId={CUSTOMER_ID}/>
           </Route>
-          <Route exact path='/placeComplaint'>
+          <Route exact path='/placeComplaint/:orderId'>
             <PlaceComplaint customerId={CUSTOMER_ID}/>
           </Route>
         </Switch>

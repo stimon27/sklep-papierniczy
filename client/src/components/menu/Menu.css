@@ -1,0 +1,15 @@
+:root {
+    --color-primary: #337def;
+    --color-secondary: #fcc729;
+}
+
+#menuContainer {
+    height: 100vh;
+    background-color: var(--color-primary);
+}
+
+#menuContainer > * {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}

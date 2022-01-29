@@ -1,0 +1,65 @@
+:root {
+    --color-primary: #337def;
+    --color-secondary: #fcc729;
+}
+
+#placeComplaintContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 50px;
+    background-color: var(--color-primary);
+    gap: 25px;
+}
+
+#placeComplaintContainer > * {
+    width: 100%;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+#placeComplaintHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#placeComplaintBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#placeComplaintBox label {
+    margin-bottom: 10px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#complaintCompleteContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+}
+
+#complaintCompleteContainer > h3 {
+    font-size: 32px;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+#complaintCompleteContainer button {
+    font-size: 32px;
+}
