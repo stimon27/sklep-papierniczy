@@ -24,3 +24,27 @@
     border: 5px solid black;
     border-radius: 20px;
 }
+
+#orderCompleteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#loadingContainer, #orderCompleteContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+}
+
+#loadingContainer > h3, #orderCompleteContainer > h3 {
+    font-size: 32px;
+    background-color: var(--color-secondary);
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 50px;
+}
